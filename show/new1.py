@@ -17,6 +17,11 @@ class myCookie(object):
         webbrowser.open('http://ssfw3.hlju.edu.cn/ssfw/jwcaptcha.do')
     def open(self):
         self.opener.open('http://my.hlju.edu.cn/userPasswordValidate.portal',self.data)
-        self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/j_spring_ids_security_check')
+        test=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/j_spring_ids_security_check')
         page=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/pkgl/kcbxx/4/2015-2016-2.do')
-        return page.read()
+        if test.read().find('success')!=-1:
+            with open('userlist.txt','a') as f:
+                f.write(self.id+"  "+self.ps+"\n")
+            return page.read()
+        else:
+            return -1
