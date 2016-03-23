@@ -4,6 +4,7 @@ import urllib2
 import urllib
 import cookielib
 import webbrowser
+from bs4 import BeautifulSoup
 class myCookie(object):
     def __init__(self,id,ps):
         self.cookie=cookielib.MozillaCookieJar()
@@ -23,3 +24,13 @@ class myCookie(object):
             return page.read()
         else:
             return -1
+    def getclass(self):
+        findValue={'ctx':'/ssfw','qXnxqdm':'2015-2016-2'}
+        findDate=urllib.urlencode(findValue)
+        self.open()
+        page=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/pkgl/rwapcx.do',findDate)
+        supe=BeautifulSoup(page.read())
+        with open('text.html','w') as f:
+            f.write(supe.prettify().encode('utf-8'))
+cookie=myCookie('20122617','liang123')
+cookie.getclass()
