@@ -6,6 +6,7 @@ import cookielib
 import webbrowser
 from bs4 import BeautifulSoup
 import sys,os
+import re
 #获取脚本文件的当前路径
 def cur_file_dir():
      #获取脚本路径
@@ -44,10 +45,33 @@ class myCookie(object):
             with open(cur_file_dir()+'\source\\'+str(i)+'.html','w') as f:
                 f.write(readpage)
     def select(self):
-        with open('text.html','r') as f:
+        with open(cur_file_dir()+'\source\\'+str(1)+'.html','r') as f:
             information=f.read()
         soup=BeautifulSoup(information,'lxml')
         #soup=BeautifulSoup(self.readpage,'lxml')
-        print soup.find_all('table')
+        soup=soup.find_all(self.istable)[4]
+        for i in range(1,11,1):
+            step=soup.find_all('tr')[i]
+            className=step.find_all('td')[0].find_all('span')[0].string.encode('utf-8')
+            classId=step.find_all('td')[1].find_all('span')[0].string.encode('utf-8')
+            classOrder=step.find_all('td')[2].find_all('span')[0].string.encode('utf-8')
+            classPoint=step.find_all('td')[8].find_all('span')[0].string.encode('utf-8')
+            classTeacher=step.find_all('td')[11].find_all('span')[0].string.encode('utf-8')
+            if step.find_all('td')[12].find_all('span')[0].find_all('br')!=[]:
+                classTime=[]
+                for child in  step.find_all('td')[12].find_all('span')[0].children:
+                    if(child.encode('utf-8')!='<br/>'):
+                        classTime.append(child.encode('utf-8'))
+            else:
+                classTime=step.find_all('td')[12].find_all('span')[0].string.encode('utf-8')
+            if step.find_all('td')[13].find_all('span')[0].find_all('br')!=[]:
+                classPlace=[]
+                for child in  step.find_all('td')[13].find_all('span')[0].children:
+                    if(child.encode('utf-8')!='<br/>'):
+                        classPlace.append(child.encode('utf-8'))
+            else:
+                classPlace=step.find_all('td')[13].find_all('span')[0].string.encode('utf-8')
+    def istable(self,tag):
+        return not tag.has_attr('class') and tag.name=='div'
 cookie=myCookie('20122617','liang123')
-cookie.getclass()
+cookie.select()
