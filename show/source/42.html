@@ -1,0 +1,689 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>教务管理系统</title>
+        
+
+<script type="text/javascript">
+    var ssfwConfig = {
+        contextPath : '/ssfw',
+        comboboxUrl : '/ssfw/combobox.widgets',
+        combotreeUrl : '/ssfw/combotree.widgets',
+        combotableUrl : '/ssfw/combotable.widgets',
+        photoDownloadUrl : '/ssfw/photo.widgets',
+        photoUploadUrl : '/ssfw/photo.widgets',
+        selectrangeUrl : '/ssfw/selectrange.widgets',
+        combobox : ['xxfs','xsly','qxxxkdjzt','kkdw','zcdm','xldm','jdfs','ydxl','xndm','hssxwfs','ksdm_bk','zyfx','xz','xqdm','pylb','jxlh','kcxz','tsxslxdm','kcsyfw','lqlb','hyzk','lxbz','kclb','djcj','xslb2','pyfs','xjzt','zsjd','wyzl','tsxslx','rxklb','zs','xjyd_shzt','xbdm','cjtsyy','jxxz','njdm','cxcyfl','pyfalx','xqxx','cjlrzt','zjlx','jtgx','gat','pyjhxxxq','zydm','zsksfs','wyzldm','jslx','xdfs','skyz','bylx','cxcylb','ksxm','sf','jcxx','xxxs','xnxq','jxfs','yddl','ksdm','rxfs','gbzwmc','bjh','zzmm','kspc','mzdm','zyjszw','djcjlx','ksqhd','zxjh','gjdq','sydw','xw','xnxqdm','rxjj','xkml','kcjb','dwdm','kcfl','pyccm','jxzs','xslb','xxxsdm'],
+        combotree : ['kkdw','xzqh','dsjbxx','ssxxxx'],
+        combotable : [{"config":{"columns":[{"header":"院系代码","width":"60","name":"id"},{"header":"院系名称","width":"120","name":"name"}],"title":"校标单位"},"name":"nuistTable"},{"config":{"columns":[{"header":"ISBN","width":"150","name":"isbn"},{"header":"书名","width":"300","name":"sm"},{"header":"丛书名","width":"180","name":"csm"},{"header":"著作者","width":"120","name":"zzz"},{"header":"价格","width":"60","name":"jg"}],"title":"请选择教材库"},"name":"selectJcTable"},{"config":{"columns":[{"header":"院系代码","width":"60","name":"dwdm"},{"header":"院系名称","width":"120","name":"dwmc"}],"title":"校标单位"},"name":"yxdmTable"}]
+    };
+</script>
+
+<link href="/ssfw/resources/js/ssfw/widgets/base/css/jquery-ui-1.9.1.custom.css" rel="stylesheet" type="text/css"/>
+<link href="/ssfw/resources/lovey/style/css/lovey.css" rel="stylesheet" type="text/css"/>
+<!-- 教务系统自定义的产品样式，主要用于覆盖loevy css，定义自己的css -->
+<link href="/ssfw/resources/common/css/custom.css" rel="stylesheet" type="text/css"/>
+<link href="/ssfw/resources/js/ssfw/widgets/base/css/base.css" rel="stylesheet"type="text/css" />
+
+<script type="text/javascript" src="/ssfw/resources/js/jquery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/jquery-ui.js"></script>
+
+
+<!-- js框架 -->
+<script src="/ssfw/resources/js/jquery-plugins/validate/jquery.metadata.js" type="text/javascript"></script>
+<script src="/ssfw/resources/js/jquery-plugins/validate/jquery.validate.js" type="text/javascript"></script>
+<script src="/ssfw/resources/js/jquery-plugins/validate/messages_cn.js" type="text/javascript"></script>
+<script src="/ssfw/resources/js/jquery-plugins/validate/validate_ex.js" type="text/javascript"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.tooltip.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/jquery-plugins/jstree/jquery.jstree.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/jquery-plugins/jquery.form.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/jquery-plugins/jquery.query-2.1.7.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/jquery-plugins/kindeditor/kindeditor-min.js"></script>
+
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.text.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.textButton.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.selectRange.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.attachment.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.util.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.combobox.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.combotree.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.date.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.textarea.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.photo.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.selectTable.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.multiText.js"></script>
+<script type="text/javascript" src="/ssfw/resources/js/ssfw/widgets/base/jquery.ui.editableForm.js"></script>
+<!-- ssfwUtil.js -->
+<script type="text/javascript" src="/ssfw/resources/js/ssfwUtil.js"></script>
+<script type="text/javascript" src="/ssfw/resources/lovey/js/easyloader.js"></script>
+
+        
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="/ssfw/resources/css/module/query.css" type="text/css">
+    <link rel="stylesheet" href="/ssfw/resources/css/dataTable/demo_page.css" type="text/css">
+    <link rel="stylesheet" href="/ssfw/resources/css/dataTable/demo_table.css" type="text/css">
+    <script type="text/javascript" src="/ssfw/resources/module/pyjh/pkrw.js"></script>
+    
+       <style type="text/css">
+ 	.ui_table {
+ 	    width: 1050px;
+     	max-width: 1050px;
+ 	}
+ 	.div_body {
+        width: 1050px !important; 
+     }
+	 </style>
+  
+        <!--[if IE 6]>
+           <script type="text/javascript" language="javascript" src="/ssfw/resources/js/ie6png.js"></script>
+        <![endif]-->
+        <style type="text/css">
+           .ul_fixed {
+              position: fixed;
+              width: 100%;
+              z-index: 9999;
+           }
+           .div_body{
+             margin-top: 30px;
+           }
+           .favi_img{
+             cursor: pointer; 
+           }
+           span.inf{
+             font-size: 10px;
+             color: #EE9A00;
+           }
+        </style>
+    </head>
+    <body>
+	    <ul class="ui_nav_breadcrumb_style02 ul_fixed">
+		    <li><a href="#" class="homepage"></a><span class="divider"></span></li>
+		    
+		    
+	    </ul>
+	    <div class="p10">
+	      <div class="div_body">
+          	     
+  
+  	<form id="form1" action="/ssfw/pkgl/rwapcx.do" method="post" onsubmit="return checkQueryParams()">
+    <input id="ctx" name="ctx" type="hidden" value="/ssfw">
+  	<input id="curPageNo" name="curPageNo" type="hidden" value="42">
+    <input id="iDisplayLength" name="iDisplayLength" type="hidden" value="10">
+    <input id="totalSize" name="totalSize" type="hidden" value="4734">
+    <div id="mainQuery" class="mainQuery">
+		<!--  <div class="queryButView">
+			<ul>
+				<li><button type="submit" class="button" onclick="queryView()">查询</button></li>
+			</ul>
+		</div>  -->
+		<div class="queryFrom">
+			<div>
+				<table border="0" width="100%" height="35px">
+					<tr>
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>学年学期：</font></td>
+									<td>
+										<input baseType="xnxq" id="xnxqdm" width="150px" name="qXnxqdm" value="2015-2016-2">
+									</td>
+								</tr>
+							</table>
+						</td>
+					
+						
+						<td style="display:none" width="30%">
+							<table>
+								<tr>
+									<td><font>校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</font></td>
+									<td>
+										<input baseType="xqxx" id="xaqh" width="150px" name="qXaqh" value="1"/>
+									</td>
+								</tr>
+							</table>
+						</td>
+						
+						
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>开课单位：</font></td>
+									<td>
+										<input id="kkdwdm" baseType="kkdw" width="170px" name="qKkdwdm" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+						
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年级：</font></td>
+									<td>
+										<input baseType="njdm" id="njdm" width="150px" name="qNjdm" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table border="0" width="100%" height="35px">
+					<tr>
+						
+					  <td width="30%">
+							<table>
+								<tr>
+									<td><font>课程类别：</font></td>
+									<td>
+										<input id="kclb" baseType="kclb" width="150px" name="qKclb" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+						
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院：</font></td>
+									<td>
+										<input baseType="dwdm" id="dwdm" width="150px" name="qDwdm" value=""/>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：</font></td>
+									<td>
+										<input id="zydm" baseType="zydm" width="170px" name="qZydm" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+				   
+					</tr>
+				</table>
+			</div>
+
+			<div id="gjQueryView33">
+				<table border="0" width="100%" height="35px" >
+					<tr>
+						<td width="30%">
+							<table>
+								<tr>
+									<td><font>课程性质：</font></td>
+									<td>
+										<input id="kcxz" baseType="kcxz" width="150px" name="qKcxz" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td width="70%">
+							<table>
+								<tr>
+									<td>星&nbsp;&nbsp;&nbsp;期：</td>
+									<td>
+										<select id="qXq" style="width:50px" name="qXq">
+											<option value="">请选择</option>
+											<option value="1">一</option>
+											<option value="2">二</option>
+											<option value="3">三</option>
+											<option value="4">四</option>
+											<option value="5">五</option>
+											<option value="6">六</option>
+											<option value="7">日</option>
+										</select>
+										&nbsp;&nbsp;&nbsp;
+									</td>
+									<td>节&nbsp;&nbsp;&nbsp;次：</td>
+									<td>
+										<div style="width:160px;">
+											<select id="qKsjc" name="qKsjc" style="width:70px" selector="jc">
+												<option value="">请选择</option>
+											</select>
+											-
+											<select id="qJsjc" name="qJsjc" style="width:70px" selector="jc">
+												<option value="">请选择</option>
+											</select>
+										</div>
+									</td>
+									<td>选中人数：</td>
+									<td>
+										<select id="bjfh" name="bjfh">
+											<option value="1">>=</option>
+											<option value="2">=</option>
+											<option value="3">&lt;</option>
+										</select>
+										<input type="text" id="qXkrs" name="qXkrs" style='ime-mode:disabled;width:80px' onkeypress='javascript:keyPressContor()'class="inputClazz" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+					     
+						<td width="30%">
+							<table>
+								<tr>
+									<td>分级教学：</td>
+									<td>
+										<input type="text" id="qFjjx" name="qFjjx" style="width: 130px" class="inputClazz" value="">
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td width="70%">
+							<table>
+								<tr>
+									<td>教&nbsp;&nbsp;&nbsp;师：</td>
+									<td>
+										<input type="text" id="qJsxx" name="qJsxx" style="width: 170px" class="inputClazz" value="">
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;课&nbsp;&nbsp;&nbsp;程：</td>
+									<td>
+										<input type="text" id="qKcxx" name="qKcxx" style="width: 150px" class="inputClazz" value="">
+									</td>
+									<td>
+							        <a type="submit" class="ui_btn ui_btn_success ui_btn_small" onclick="showMore()">更多</a>
+							        <!-- 导出2014-09-22 -->
+							        
+							        </td>
+							        <td align="right">
+							         <button type="submit" class="ui_btn ui_btn_info" onclick="queryView()"><i class="icon_search icon_white"></i>查询</button>
+							        </td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr class="showMoreTr" style="display:none">
+					    <td colspan="3"> 	
+					      <table width="100%">
+					        <tr>
+							  <td width="40%">
+									<table>
+										<tr>
+											<td><font>聘用类型：</font></td>
+											<td>
+												<input baseType="pylb" width="150px" name="qPylb" value="">
+											</td>
+										</tr>
+									</table>
+								</td>
+								
+								
+									
+							  <td width="30%">
+									<table>
+										<tr>
+											<td><font>职称：</font></td>
+											<td>
+												<input  baseType="zcdm" width="150px" name="qZc" value="">
+											</td>
+										</tr>
+									</table>
+								</td>
+								
+									
+							  <td width="30%">
+									<table>
+										<tr>
+											<td><font>性别：</font></td>
+											<td>
+												<input baseType="xbdm" width="150px" name="qXb" value="">
+											</td>
+										</tr>
+									</table>
+								</td>
+							 </tr>
+							</table>
+						</td>
+					</tr>
+					
+					<tr class="showMoreTr" style="display:none">
+					    <td colspan="3"> 	
+					      <table width="100%">
+					        <tr>
+					        	<td width="25%">
+					        		<table width="100%">
+					        			<tr>
+					        				<td>上课楼宇</td>
+					        				<td><input baseType="jxlh"  name="qJxlh" value=""></td>
+					        			</tr>
+					        		</table>
+					        	</td>
+					        	<td width="25%">
+					        		<table width="100%">
+					        			<tr>
+					        				<td>教室类型</td>
+					        				<td><input baseType="jslx"  name="qJslx" value=""></td>
+					        			</tr>
+					        		</table>
+					        	</td>
+					        	<td width="25%">
+					        		<table width="100%">
+					        			<tr>
+					        				<td>教室</td>
+					        				<td><input type="text" name="qJash" class="inputClazz" value=""></td>
+					        			</tr>
+					        		</table>
+					        	</td>
+					        	<td width="25%">
+					        		<table width="100%">
+					        			<tr>
+					        				<td>上课周次</td>
+					        				<td>
+					        					<select id="qSkzc" name="qSkzc" style="width:70px" >
+					        						<option value=""></option>
+								        		</select>
+					        				</td>
+					        			</tr>
+					        		</table>
+					        	</td>
+							 </tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	</form>
+	<!-- 查询结束 -->
+	
+	 <div id="tsDiv" class="message">
+	      <span><strong></strong> 您好！2016-2017 第一学期排课开放时间：<strong>2016-06-01</strong>，请知晓！<font color="red">（尚未到达本学期排课课表查询时间，无法查询本学期课程安排结果！）</font></span>
+	 </div>
+	
+     <div>
+        <table class="ui_table ui_table_hover ui_table_striped ui_table_style02" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr class="tableTr">
+                <th width="8%" height="25" style="text-align:center" align="center" valign="middle" class="fontColorBlue" scope="col">课程名</th>
+                <th width="7%" height="25" style="text-align:center" align="center" valign="middle" class="fontColorBlue" scope="col">课程代码</th>
+                <th width="5%" height="25" style="text-align:center" align="center" valign="middle" class="fontColorBlue" scope="col">课序号</th>
+                <th width="5%" height="25" style="text-align:center" align="center" valign="middle" class="fontColorBlue" scope="col">课容量</th>
+                <th width="5%" height="25" style="text-align:center" align="center" valign="middle" class="fontColorBlue" scope="col">选课人数</th>
+                <th width="5%" height="25" style="text-align:center" align="center" valign="middle" scope="col">课程性质</th>
+                <th width="8%" height="25" style="text-align:center" align="center" valign="middle" scope="col">开课单位</th>
+                <th width="4%" height="25" style="text-align:center" align="center" valign="middle" scope="col">总学时</th>
+                <th width="4%" height="25" style="text-align:center" align="center" valign="middle" scope="col">学分</th>
+                <th width="4%" height="25" style="text-align:center" align="center" valign="middle" scope="col">周学时</th>
+                <th width="4%" height="25" style="text-align:center" align="center" valign="middle" scope="col">授课学时</th>
+                <th width="6%" height="25" style="text-align:center" align="center" valign="middle" scope="col">教师</th>
+                <th width="12%" height="25" style="text-align:center" align="center" valign="middle" scope="col">已排时间</th>
+                <th width="10%" height="25" style="text-align:center" align="center" valign="middle" scope="col">已排地点</th>
+                <th width="4%" height="25" style="text-align:center" align="center" valign="middle" scope="col">分级教学</th>
+                <th width="5%" height="25" style="text-align:center" align="center" valign="middle" scope="col">操作</th>
+            </tr>
+             
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：哲学与文化专题">哲学与文化专题</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001075">1412001075</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量：100">100</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：12">12</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="教师：张彤">张彤</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：1-18周 星期一 3-4节">1-18周 星期一 3-4节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-573">汇文楼 汇文楼-573</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：德语Ⅱ">德语Ⅱ</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001081">1412001081</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量：70">70</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：20">20</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：72">72</span></td>
+             		<td align="center" valign="middle"><span title="总学分：4.0">4.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：4">4</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：72">72</span></td>
+             		<td align="center" valign="middle"><span title="教师：张明江">张明江</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：1-18周 星期日 5-8节">1-18周 星期日 5-8节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-427">汇文楼 汇文楼-427</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：PAL课程">PAL课程</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001086">1412001086</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量："></span></td>
+             		<td align="center" valign="middle"><span title="选课人数："></span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：18">18</span></td>
+             		<td align="center" valign="middle"><span title="总学分：1.0">1.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：18">18</span></td>
+             		<td align="center" valign="middle"><span title="教师：郭春明">郭春明</span></td>
+             		<td align="center" valign="middle"><span title="已排时间："></span></td>
+             		<td align="center" valign="middle"><span title="已排地点"></span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：学年论文">学年论文</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001104">1412001104</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量："></span></td>
+             		<td align="center" valign="middle"><span title="选课人数："></span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="教师："></span></td>
+             		<td align="center" valign="middle"><span title="已排时间："></span></td>
+             		<td align="center" valign="middle"><span title="已排地点"></span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：专业实习">专业实习</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001105">1412001105</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量："></span></td>
+             		<td align="center" valign="middle"><span title="选课人数："></span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="总学分：7.0">7.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="教师："></span></td>
+             		<td align="center" valign="middle"><span title="已排时间："></span></td>
+             		<td align="center" valign="middle"><span title="已排地点"></span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：调研报告">调研报告</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001107">1412001107</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量："></span></td>
+             		<td align="center" valign="middle"><span title="选课人数："></span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="总学分：1.0">1.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="教师："></span></td>
+             		<td align="center" valign="middle"><span title="已排时间："></span></td>
+             		<td align="center" valign="middle"><span title="已排地点"></span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：人生哲学">人生哲学</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001124">1412001124</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量：100">100</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：41">41</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="教师：张彤">张彤</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：1-18周 星期四 5-6节">1-18周 星期四 5-6节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-418">汇文楼 汇文楼-418</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：中西哲学比较">中西哲学比较</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412001125">1412001125</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量：40">40</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：31">31</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：哲学学院">哲学学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="教师：卿文光">卿文光</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：1-18周 星期二 9-10节">1-18周 星期二 9-10节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-521">汇文楼 汇文楼-521</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：报关实务">报关实务</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412002004">1412002004</span></td>
+             		<td align="center" valign="middle"><span title="课序号：01">01</span></td>
+             		<td align="center" valign="middle"><span title="课容量：100">100</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：81">81</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：经济与工商管理学院">经济与工商管理学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="教师：熊涓">熊涓</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：10-18周 星期一 5-6节,10-18周 星期五 1-2节">10-18周 星期一 5-6节<br/>10-18周 星期五 1-2节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-082,汇文楼 汇文楼-082">汇文楼 汇文楼-082<br/>汇文楼 汇文楼-082</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+                 
+             	<tr class="t_con">
+             		<td align="center" valign="middle"><span title="课程名：报关实务">报关实务</span></td>
+             		<td align="center" valign="middle"><span  title="课程号：1412002004">1412002004</span></td>
+             		<td align="center" valign="middle"><span title="课序号：02">02</span></td>
+             		<td align="center" valign="middle"><span title="课容量：100">100</span></td>
+             		<td align="center" valign="middle"><span title="选课人数：84">84</span></td>
+             		<td align="center" valign="middle"><span title="课程性质："></span></td>
+             		<td align="center" valign="middle"><span title="开课单位：经济与工商管理学院">经济与工商管理学院</span></td>
+             		<td align="center" valign="middle"><span title="总学时：36">36</span></td>
+             		<td align="center" valign="middle"><span title="总学分：2.0">2.0</span></td>
+             		<td align="center" valign="middle"><span title="周学时：2">2</span></td>
+             		<td align="center" valign="middle"><span title="授课学时：0">0</span></td>
+             		<td align="center" valign="middle"><span title="教师：熊涓">熊涓</span></td>
+             		<td align="center" valign="middle"><span title="已排时间：10-18周 星期一 7-8节,10-18周 星期五 3-4节">10-18周 星期一 7-8节<br/>10-18周 星期五 3-4节</span></td>
+             		<td align="center" valign="middle"><span title="已排地点汇文楼 汇文楼-082,汇文楼 汇文楼-082">汇文楼 汇文楼-082<br/>汇文楼 汇文楼-082</span></td>
+             		<td align="center" valign="middle"><span title="分级教学："></span></td>
+             		<td align="center" valign="middle">
+                     
+                   </td>
+             	</tr>
+             
+             
+        </table>
+    </div>
+    
+    <!-- 表格结束 -->
+    
+    <!-- 分页操作 -->
+     
+  <div class="ui_pagination ui_pagination_right">
+            <ul>
+                <li><span><b id="startIndex">411</b>-<b id="endIndex">420</b>/共<b>4734</b>条</span></li>
+                <li ><a href="javascript:void(0);" id="dataView_first">首页</a></li>
+                <li ><a href="javascript:void(0);" id="dataView_previous">上一页</a></li>
+                <li ><a href="javascript:void(0);" id="dataView_next">下一页</a></li>
+                <li ><a href="javascript:void(0);" id="dataView_last">尾页</a></li>
+            </ul>
+    </div> 
+	<!-- <div class="dataTables_paginate paging_full_numbers" style="padding-right:2px;"  id="dataView_paginate">
+		<a tabindex="0" style="cursor: pointer" class="first paginate_button" id="dataView_first">首页</a>
+		<a style="cursor: pointer" class="previous paginate_button" id="dataView_previous">上一页</a>
+		<a style="cursor: pointer" class="next paginate_button" id="dataView_next">下一页</a>
+		<a style="cursor: pointer" class="last paginate_button" id="dataView_last">尾页</a>
+	</div> 
+	
+	<div style="margin-left: 6px"><span>共<b>4734</b>条结果/当前显示第<b id="startIndex">411</b>至<b id="endIndex">420</b>个</span></div>
+	-->
+	<div id="detailMsg" title="调课记录明细" style="display:none"></div>
+	<input type="hidden" id="hXqdm" value="">
+	<input type="hidden" id="hKsjc" value="">
+	<input type="hidden" id="hJsjc" value="">
+	<input type="hidden" id="hSkzc" value="">
+	
+   
+          </div>
+        </div>  
+    </body>
+</html>
