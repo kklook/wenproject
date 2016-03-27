@@ -47,14 +47,18 @@ class myCookie(object):
                 f.write(readpage)
     def select(self):
         sqlLink=MySqlLink()
-        for i in range(205,475,1):
-            print i
+        for i in range(1,475,1):
+            #print i
             with open(cur_file_dir()+'\source\\'+str(i)+'.html','r') as f:
                 information=f.read()
             soup=BeautifulSoup(information,'lxml')
             #soup=BeautifulSoup(self.readpage,'lxml')
             soup=soup.find_all(self.istable)[4]
-            for i in range(1,11,1):
+            if i==474:
+                t=5
+            else:
+                t=11
+            for i in range(1,t,1):
                 step=soup.find_all('tr')[i]
                 className=step.find_all('td')[0].find_all('span')[0].string.encode('utf-8')
                 classId=step.find_all('td')[1].find_all('span')[0].string.encode('utf-8')
