@@ -6,6 +6,7 @@ import cookielib
 import webbrowser
 from bs4 import BeautifulSoup
 import sys,os
+from sqlProcess import MySqlLink
 import re
 #获取脚本文件的当前路径
 def cur_file_dir():
@@ -45,32 +46,50 @@ class myCookie(object):
             with open(cur_file_dir()+'\source\\'+str(i)+'.html','w') as f:
                 f.write(readpage)
     def select(self):
-        with open(cur_file_dir()+'\source\\'+str(1)+'.html','r') as f:
-            information=f.read()
-        soup=BeautifulSoup(information,'lxml')
-        #soup=BeautifulSoup(self.readpage,'lxml')
-        soup=soup.find_all(self.istable)[4]
-        for i in range(1,11,1):
-            step=soup.find_all('tr')[i]
-            className=step.find_all('td')[0].find_all('span')[0].string.encode('utf-8')
-            classId=step.find_all('td')[1].find_all('span')[0].string.encode('utf-8')
-            classOrder=step.find_all('td')[2].find_all('span')[0].string.encode('utf-8')
-            classPoint=step.find_all('td')[8].find_all('span')[0].string.encode('utf-8')
-            classTeacher=step.find_all('td')[11].find_all('span')[0].string.encode('utf-8')
-            if step.find_all('td')[12].find_all('span')[0].find_all('br')!=[]:
-                classTime=[]
-                for child in  step.find_all('td')[12].find_all('span')[0].children:
-                    if(child.encode('utf-8')!='<br/>'):
-                        classTime.append(child.encode('utf-8'))
-            else:
-                classTime=step.find_all('td')[12].find_all('span')[0].string.encode('utf-8')
-            if step.find_all('td')[13].find_all('span')[0].find_all('br')!=[]:
-                classPlace=[]
-                for child in  step.find_all('td')[13].find_all('span')[0].children:
-                    if(child.encode('utf-8')!='<br/>'):
-                        classPlace.append(child.encode('utf-8'))
-            else:
-                classPlace=step.find_all('td')[13].find_all('span')[0].string.encode('utf-8')
+        sqlLink=MySqlLink()
+        for i in range(205,475,1):
+            print i
+            with open(cur_file_dir()+'\source\\'+str(i)+'.html','r') as f:
+                information=f.read()
+            soup=BeautifulSoup(information,'lxml')
+            #soup=BeautifulSoup(self.readpage,'lxml')
+            soup=soup.find_all(self.istable)[4]
+            for i in range(1,11,1):
+                step=soup.find_all('tr')[i]
+                className=step.find_all('td')[0].find_all('span')[0].string.encode('utf-8')
+                classId=step.find_all('td')[1].find_all('span')[0].string.encode('utf-8')
+                classOrder=step.find_all('td')[2].find_all('span')[0].string.encode('utf-8')
+                classPoint=step.find_all('td')[8].find_all('span')[0].string.encode('utf-8')
+                if step.find_all('td')[11].find_all('span')[0].string==None:
+                    classTeacher='/s'
+                else:
+                    classTeacher=step.find_all('td')[11].find_all('span')[0].string.encode('utf-8')
+                if step.find_all('td')[12].find_all('span')[0].find_all('br')!=[]:
+                    classTime=[]
+                    for child in  step.find_all('td')[12].find_all('span')[0].children:
+                        if(child.encode('utf-8')!='<br/>'):
+                            classTime.append(child.encode('utf-8'))
+                elif step.find_all('td')[12].find_all('span')[0].string==None:
+                    classTime='/s'
+                else:
+                    classTime=step.find_all('td')[12].find_all('span')[0].string.encode('utf-8')
+                if step.find_all('td')[13].find_all('span')[0].find_all('br')!=[]:
+                    classPlace=[]
+                    for child in  step.find_all('td')[13].find_all('span')[0].children:
+                        if(child.encode('utf-8')!='<br/>'):
+                            classPlace.append(child.encode('utf-8'))
+                elif step.find_all('td')[13].find_all('span')[0].string==None:
+                    classPlace='/s'
+                else:
+                    classPlace=step.find_all('td')[13].find_all('span')[0].string.encode('utf-8')
+                base={}
+                base['className']=className
+                base['classId']=classId
+                base['classOrder']=classOrder
+                base['classPoint']=classPoint
+                base['classTeacher']=classTeacher
+                sqlLink.sqlInsert(base,classTime,classPlace)
+
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
 cookie=myCookie('20122617','liang123')
