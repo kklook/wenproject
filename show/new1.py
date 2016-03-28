@@ -93,8 +93,41 @@ class myCookie(object):
                 base['classPoint']=classPoint
                 base['classTeacher']=classTeacher
                 sqlLink.sqlInsert(base,classTime,classPlace)
+    def classtoclass(self):
+        self.open()
+        page=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/xkgl/xkjgcx.do')
+        html=page.read()
+        soup=BeautifulSoup(html,'lxml')
+        step=soup.find_all('table')[0]
+        step=step.find_all('tr')
+        for i in range(1,len(step),1):
+            classId=step[i].find_all('td')[1].find_all('span')[0].string.encode('utf-8')
+            className=step[i].find_all('td')[2].find_all('span')[0].string.encode('utf-8')
+            if step[i].find_all('td')[5].find_all('span')[0].find_all('br')!=[]:
+                classTime=[]
+                for child in  step[i].find_all('td')[5].find_all('span')[0].children:
+                    if(child.encode('utf-8')!='<br/>'):
+                        classTime.append(child.encode('utf-8'))
+            elif step[i].find_all('td')[5].find_all('span')[0].string==None:
+                classTime=None
+            else:
+                classTime=step[i].find_all('td')[5].find_all('span')[0].string.encode('utf-8')
+            if step[i].find_all('td')[6].find_all('span')[0].find_all('br')!=[]:
+                classPlace=[]
+                for child in  step[i].find_all('td')[6].find_all('span')[0].children:
+                    if(child.encode('utf-8')!='<br/>'):
+                        classPlace.append(child.encode('utf-8'))
+            elif step[i].find_all('td')[6].find_all('span')[0].string==None:
+                classPlace=None
+            else:
+                classPlace=step[i].find_all('td')[6].find_all('span')[0].string.encode('utf-8')
+            classTeacher=step[i].find_all('td')[7].find_all('span')[0].string.encode('utf-8')
+
+
+
+
 
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
 cookie=myCookie('20122617','liang123')
-cookie.select()
+cookie.classtoclass()
