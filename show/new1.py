@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 import sys,os
 from sqlProcess import MySqlLink
 import re
+from classpart import UserClass
+import json
 #获取脚本文件的当前路径
 def cur_file_dir():
      #获取脚本路径
@@ -122,6 +124,9 @@ class myCookie(object):
             else:
                 classPlace=step[i].find_all('td')[6].find_all('span')[0].string.encode('utf-8')
             classTeacher=step[i].find_all('td')[7].find_all('span')[0].string.encode('utf-8')
+            jslist=[]
+            userclass=UserClass(classId,className,classTime,classPlace,classTeacher)
+            jslist.append(json.dumps(userclass,default=userclass.jsondict))
 
 
 
@@ -129,5 +134,4 @@ class myCookie(object):
 
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
-cookie=myCookie('20122617','liang123')
-cookie.classtoclass()
+
