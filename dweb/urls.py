@@ -18,6 +18,7 @@ from django.contrib import admin
 from show import views as show_views
 import settings
 urlpatterns = [
+    url(r'^change',show_views.change,name='change'),
     url(r'^$',show_views.home,name='home'),
     url(r'^get$',show_views.get,name='get'),
     url(r'^admin/', admin.site.urls),

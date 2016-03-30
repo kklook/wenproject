@@ -1,6 +1,15 @@
 # -*- coding:utf-8 -*-
-import re
-
-pattern=re.compile(r'^(.*)周\(?(单|双)?\)? 星期(一|二|三|四|五|六|日) (.*)节$')
-result=re.search(pattern,'7-10周 星期四 3-4节')
-print result.group(3)
+import sys
+import math
+list=range(6)
+def exp(i):
+    if i==1:
+        list[i]=1
+        return 1
+    if i==2:
+        list[i]=1
+        return 1
+    list[i]=exp(i-2)+exp(i-1)
+    return exp(i-2)+exp(i-1)
+exp(5)
+print list

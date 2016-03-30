@@ -102,6 +102,8 @@ class myCookie(object):
         soup=BeautifulSoup(html,'lxml')
         step=soup.find_all('table')[0]
         step=step.find_all('tr')
+        jslist=[]
+        classlist=[]
         for i in range(1,len(step),1):
             classId=step[i].find_all('td')[1].find_all('span')[0].string.encode('utf-8')
             className=step[i].find_all('td')[2].find_all('span')[0].string.encode('utf-8')
@@ -124,14 +126,10 @@ class myCookie(object):
             else:
                 classPlace=step[i].find_all('td')[6].find_all('span')[0].string.encode('utf-8')
             classTeacher=step[i].find_all('td')[7].find_all('span')[0].string.encode('utf-8')
-            jslist=[]
             userclass=UserClass(classId,className,classTime,classPlace,classTeacher)
             jslist.append(json.dumps(userclass,default=userclass.jsondict))
-
-
-
-
-
+            classlist.append(userclass)
+        return classlist
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
 
