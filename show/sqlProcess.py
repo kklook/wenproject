@@ -59,9 +59,27 @@ class MySqlLink(object):
             self.cursor.execute('insert into classwhere(classId,classOrder) VALUES ("%s","%s")'%(base['classId'],base['classOrder']))
         else:
             self.cursor.execute('insert into classwhere(classId,classOrder,classPlace) VALUES ("%s","%s","%s")'%(base['classId'],base['classOrder'],where))
+    def getLock(self):
+        self.cursor.execute("select get_lock(%s,%s)"%('"lock"',5))
+        ret=self.cursor.fetchone()
+        print ret
+        if ret[0]==1:
+            return True
+        else:
+            return False
+    def releaseLock(self):
+        self.cursor.execute('select release_lock(%s)'%('"lock"'))
+        ret=self.cursor.fetchone()
+        print ret
+        if ret[0]==1:
+            return True
+        else:
+            return False
+
 
 
 
 
 link=MySqlLink()
-
+print link.getLock()
+print link.releaseLock()
