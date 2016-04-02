@@ -133,3 +133,4 @@ class myCookie(object):
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
 
+cookie=myCookie('20122617','liang123')
