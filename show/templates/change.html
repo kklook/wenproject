@@ -5,11 +5,13 @@
     <title>课程交换</title>
 </head>
 <body>
+<h1>交换课程</h1><hr>
 <select name="choseclass" id="selectclass" >
     {%for i in classlist%}
     <option value="{{i.classId}}">{{i.className}}</option>
     {%endfor%}
 </select>
+<button type="submit">提交</button>
 
 </body>
 </html>
