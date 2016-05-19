@@ -26,12 +26,13 @@ class myCookie(object):
         self.opener=urllib2.build_opener(self.handle)
         self.id=id
         self.ps=ps
-        self.value={'Login.Token1':self.id,'Login.Token2':self.ps}
+        self.value={'IDToken1':self.id,'IDToken2':self.ps}
         self.data=urllib.urlencode(self.value)
     def getimg(self):
         webbrowser.open('http://ssfw3.hlju.edu.cn/ssfw/jwcaptcha.do')
     def open(self):
-        self.opener.open('http://my.hlju.edu.cn/userPasswordValidate.portal',self.data)
+        self.opener.open('http://ids.hlju.edu.cn/amserver/UI/Login',self.data)
+		self.opener.open('http://my.hlju.edu.cn')
         self.test=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/j_spring_ids_security_check')
         self.page=self.opener.open('http://ssfw3.hlju.edu.cn/ssfw/pkgl/kcbxx/4/2015-2016-2.do')
         if self.test.read().find('success')!=-1:
@@ -133,4 +134,4 @@ class myCookie(object):
     def istable(self,tag):
         return not tag.has_attr('class') and tag.name=='div'
 
-cookie=myCookie('20122617','liang123')
+
